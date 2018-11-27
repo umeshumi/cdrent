@@ -1,0 +1,13 @@
+.jumbotron{
+	background:#c3c388;
+	width: 800px;
+	margin: auto;
+	padding-top: 45px;
+	padding-bottom: 25px;
+
+}
+
+.tble{
+	margin-left: 50px;
+	border: 2.5px solid green;;
+}

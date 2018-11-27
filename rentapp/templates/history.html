@@ -1,0 +1,53 @@
+{% extends 'home.html' %}
+{% load bootstrap4 %}
+
+{% block title1 %}
+Rent History
+{% endblock %}
+{% block title2 %}
+list of rented cd
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="jumbotron" >
+	{% if rents %}
+          
+          <div class="row">
+            {% for rent in rents %}
+            
+            <div class="col-sm-12 col-md-6 col-lg-3 p-b-50">
+              
+              <!-- Block2 -->
+              <div class="block2">
+                <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+                  <img src="{{ rent.product.Image.url }}" alt="IMG-PRODUCT" style="width:250px; height:200px">
+
+                </div>
+
+                <div class="block2-txt p-t-20">
+                
+                    <h4 style="font-style: italic; color:blue">{{ rent.product.Name }}</h4>
+                  
+                  <br>
+                  <span class="block2-price m-text6 p-r-5">
+                    Rs--{{ rent.product.Rent_Price }}
+                  </span>
+                </div>
+              </div>
+              
+            </div>
+
+
+            {% endfor %}
+
+          <!-- Pagination -->
+
+        </div>
+        
+        {% else %}
+        <h1>No history</h1>
+        {% endif %}
+		</form>
+		</div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'home.html' %}
+{% load bootstrap4 %}
+{% block newstyle %}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/newstyl.css" %}">
+
+{% endblock %}
+{% block title1 %}
+Add New CD
+{% endblock %}
+{% block title2 %}
+add new CD to product list
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="jumbotron" >
+		<form method="POST" enctype="multipart/form-data" class="form">
+			{% csrf_token %}
+			
+
+<table >
+    {% for field in form %}
+    <tbody>
+    <tr>
+      <td>
+        <label for="{{ field.label }}" style="display:inline-block;vertical-align:middle;color:#3333ff;">{{ field.label_tag }}</label>
+      </td>
+      <td>
+        {{ field }}
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <br>
+			{% buttons %}
+        		<button type="submit" class=" btn btn-outline-info" style="text-align: center;margin:auto;display:block;">Add</button>
+    		{% endbuttons %}
+		</form>
+		</div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'home.html' %}
+{% load bootstrap4 %}
+{% block newstyle %}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/newstyl1.css" %}">
+
+{% endblock %}
+{% block title1 %}
+Signup Here
+{% endblock %}
+{% block title2 %}
+only registered user can able to view and rent Cd's
+{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="jumbotron" >
+		<form method="POST" enctype="multipart/form-data" class="form">
+			{% csrf_token %}
+			
+
+{% if form.non_field_errors %}
+    <ul>
+      {% for error in form.non_field_errors %}
+        <li style="color:red">{{ error }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% for hidden_field in form.hidden_fields %}
+    {% if hidden_field.errors %}
+      <ul>
+        {% for error in hidden_field.errors %}
+          <li style="color:red">(Hidden field {{ hidden_field.name }}) {{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  <table border="1" class="tble">
+    {% for field in form.visible_fields %}
+      <tr>
+        <th style="color:#003300">{{ field.label_tag }}</th>
+        <td>
+          {% if field.errors %}
+            <ul>
+              {% for error in field.errors %}
+                <li style="color:red">{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {{ field }}
+          {% if field.help_text %}
+            <br /><small style="color:#003300">{{ field.help_text }}</small>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+  <br>
+			{% buttons %}
+        		<button type="submit" class=" btn btn-outline-success" style="text-align: center;margin:auto;display:block;">SignUp</button>
+    		{% endbuttons %}
+
+		</form>
+		</div>
+</div>
+{% endblock %}
